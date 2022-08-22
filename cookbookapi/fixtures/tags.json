@@ -1,0 +1,51 @@
+[
+    {
+        "model": "cookbookapi.tag",
+        "pk": 1,
+        "fields": {
+            "label": "Dessert"
+        }
+    },
+    {
+        "model": "cookbookapi.tag",
+        "pk": 2,
+        "fields": {
+            "label": "Snack"
+        }
+    },
+    {
+        "model": "cookbookapi.tag",
+        "pk": 3,
+        "fields": {
+            "label": "Appetizer"
+        }
+    },
+    {
+        "model": "cookbookapi.tag",
+        "pk": 4,
+        "fields": {
+            "label": "Brunch"
+        }
+    },
+    {
+        "model": "cookbookapi.tag",
+        "pk": 5,
+        "fields": {
+            "label": "Breakfast"
+        }
+    },
+    {
+        "model": "cookbookapi.tag",
+        "pk": 6,
+        "fields": {
+            "label": "Lunch"
+        }
+    },
+    {
+        "model": "cookbookapi.tag",
+        "pk": 7,
+        "fields": {
+            "label": "Dinner"
+        }
+    }
+]
