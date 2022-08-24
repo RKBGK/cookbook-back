@@ -8,5 +8,5 @@ class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)    
     measure = models.ForeignKey(Measure, on_delete=models.CASCADE)
-    quantity = models.DecimalField()
+    quantity = models.DecimalField(max_digits=10, decimal_places=2)
   

@@ -1,5 +1,7 @@
+from unicodedata import category
 from django.db import models
 from cookbookapi.models.chef import Chef
+from cookbookapi.models.category import Category
 
 class Recipe(models.Model):
     chef = models.ForeignKey(Chef, on_delete=models.CASCADE) 
@@ -10,3 +12,5 @@ class Recipe(models.Model):
     video_url = models.URLField(max_length=500, default=None)
     recipe = models.CharField(max_length=500, default=None)
     cooktime = models.IntegerField()
+    category = models.ManyToManyField(Category, related_name="recipecat") 
+    favorite = models.ManyToManyField(Chef, related_name="userfav") 
