@@ -1,0 +1,40 @@
+[
+    {
+        "model": "cookbookapi.recipe",
+        "pk": 1,
+        "fields": {
+            "chef":1,
+            "title": "Pizza",
+            "publication_date":"2022-07-01",
+            "image_url": "www.cnn.com",
+            "description": "Suggested toppings group Spinach and pineapple",
+            "video_url": "www.cnn.com",
+            "recipe": "bake",
+            "cooktime": 20,
+            "category": [1,2],
+            "favorite": [
+                 1,1
+                ]
+        }
+    },
+    {
+        "model": "cookbookapi.recipe",
+        "pk": 2,
+        "fields": {
+            "chef":2,
+            "title": "Pasta",
+            "publication_date":"2022-07-01",
+            "image_url": "www.cnn.com",
+            "description": "Suggested toppings group Spinach and pineapple",
+            "video_url": "www.cnn.com",
+            "recipe": "boil",
+            "cooktime": 20,
+            "category": [1,2],
+            "favorite": [
+                2,2 
+                ]
+
+            
+        }
+    }
+]

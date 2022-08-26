@@ -1,0 +1,51 @@
+[
+    {
+        "model": "cookbookapi.ingredient",
+        "pk": 1,
+        "fields": {
+            "element": "Water"
+        }
+    },
+    {
+        "model": "cookbookapi.ingredient",
+        "pk": 2,
+        "fields": {
+            "element": "Oil"
+        }
+    },
+    {
+        "model": "cookbookapi.ingredient",
+        "pk": 3,
+        "fields": {
+            "element": "Flour"
+        }
+    },
+    {
+        "model": "cookbookapi.ingredient",
+        "pk": 4,
+        "fields": {
+            "element": "Salt"
+        }
+    },
+    {
+        "model": "cookbookapi.ingredient",
+        "pk": 5,
+        "fields": {
+            "element": "Sugar"
+        }
+    },
+    {
+        "model": "cookbookapi.ingredient",
+        "pk": 6,
+        "fields": {
+            "element": "Black Pepper"
+        }
+    },
+    {
+        "model": "cookbookapi.ingredient",
+        "pk": 7,
+        "fields": {
+            "element": "Butter"
+        }
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "model": "cookbookapi.comment",
+        "pk": 1,
+        "fields": {
+            "recipe": 1,
+            "chef": 1,
+            "content": "Easy to cook",
+            "created_on": "2022-06-01"
+        }
+    },
+    {
+        "model": "cookbookapi.comment",
+        "pk": 2,
+        "fields": {
+            "recipe": 2,
+            "chef": 1,
+            "content": "Delicious",
+            "created_on": "2022-06-04"
+        }
+    },
+    {
+        "model": "cookbookapi.comment",
+        "pk": 2,
+        "fields": {
+            "recipe": 2,
+            "chef": 2,
+            "content": "Must try",
+            "created_on": "2022-06-04"
+        }
+    }
+]

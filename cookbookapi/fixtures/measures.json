@@ -1,0 +1,58 @@
+[
+    {
+        "model": "cookbookapi.measure",
+        "pk": 1,
+        "fields": {
+            "unit": "Cup"
+        }
+    },
+    {
+        "model": "cookbookapi.measure",
+        "pk": 2,
+        "fields": {
+            "unit": "Tablespoon"
+        }
+    },
+    {
+        "model": "cookbookapi.measure",
+        "pk": 3,
+        "fields": {
+            "unit": "Teaspoon"
+        }
+    },
+    {
+        "model": "cookbookapi.measure",
+        "pk": 4,
+        "fields": {
+            "unit": "Ounce"
+        }
+    },
+    {
+        "model": "cookbookapi.measure",
+        "pk": 5,
+        "fields": {
+            "unit": "Gram"
+        }
+    },
+    {
+        "model": "cookbookapi.measure",
+        "pk": 6,
+        "fields": {
+            "unit": "Milliliter"
+        }
+    },
+    {
+        "model": "cookbookapi.measure",
+        "pk": 7,
+        "fields": {
+            "unit": "Liter"
+        }
+    },
+    {
+        "model": "cookbookapi.measure",
+        "pk": 8,
+        "fields": {
+            "unit": "Pinch"
+        }
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "model": "cookbookapi.subscription",
+        "pk": 1,
+        "fields": {            
+            "chef": 1,
+            "follower": 2,
+            "created_on": "2022-06-12",
+            "deleted_on": "2022-06-19"
+        }
+    },
+    {
+        "model": "cookbookapi.subscription",
+        "pk": 2,
+        "fields": {            
+            "chef": 2,
+            "follower": 1,
+            "created_on": "2022-06-12",
+            "deleted_on": "2022-06-19"
+        }
+    }
+]
+
+

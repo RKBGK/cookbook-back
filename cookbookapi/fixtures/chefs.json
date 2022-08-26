@@ -1,0 +1,24 @@
+[
+    {
+        "model": "cookbookapi.chef",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "bio": "Me",
+            "image_url": "https:abcnews.com",
+            "created_on": "2022-06-01",
+            "active": "1"
+        }
+    },
+    {
+        "model": "cookbookapi.chef",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "bio": "Me",
+            "image_url": "https:abcnews.com",
+            "created_on": "2022-06-09",
+            "active": "0"
+        }
+    }
+]

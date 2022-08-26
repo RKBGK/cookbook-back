@@ -1,0 +1,72 @@
+[
+    {
+        "model": "cookbookapi.category",
+        "pk": 1,
+        "fields": {
+            "label": "Vegetarian"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 2,
+        "fields": {
+            "label": "vegan"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 3,
+        "fields": {
+            "label": "Pescatarian"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 4,
+        "fields": {
+            "label": "Beef"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 5,
+        "fields": {
+            "label": "Chicken"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 6,
+        "fields": {
+            "label": "Pork"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 7,
+        "fields": {
+            "label": "Egg"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 8,
+        "fields": {
+            "label": "Diary"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 9,
+        "fields": {
+            "label": "Gluten free"
+        }
+    },
+    {
+        "model": "cookbookapi.category",
+        "pk": 10,
+        "fields": {
+            "label": "other meat"
+        }
+    }
+]

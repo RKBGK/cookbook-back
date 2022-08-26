@@ -1,0 +1,24 @@
+[
+    {
+        "model": "cookbookapi.recipeingredient",
+        "pk": 1,
+        "fields": {            
+            "ingredient": 1,
+            "recipe": 1,
+            "quantity": 1,
+            "measure": 1
+        }
+    },
+    {
+        "model": "cookbookapi.recipeingredient",
+        "pk": 2,
+        "fields": {            
+            "ingredient": 2,
+            "recipe": 1,
+            "quantity": 2,
+            "measure": 2
+        }
+    }
+]
+
+
