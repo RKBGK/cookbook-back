@@ -1,4 +1,3 @@
-import imp
 from .category import Category
 from .comment import Comment
 from .chef  import Chef
@@ -8,3 +7,4 @@ from .recipe_ingredient import RecipeIngredient
 from .recipe import Recipe
 from .subscription import Subscription
 from .tag import Tag
+from .recipetags import RecipeTag
