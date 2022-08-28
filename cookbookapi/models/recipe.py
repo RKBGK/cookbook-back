@@ -11,6 +11,14 @@ class Recipe(models.Model):
     description = models.CharField(max_length=50)
     video_url = models.URLField(max_length=500, default=None)
     recipe = models.CharField(max_length=500, default=None)
-    cooktime = models.IntegerField()
-    category = models.ManyToManyField(Category, related_name="recipecat") 
+    cookingtime = models.IntegerField()
+    category = models.ManyToManyField(Category, related_name="recipetype") 
     favorite = models.ManyToManyField(Chef, related_name="userfav") 
+    
+    @property
+    def categorized(self):
+        return self.__categorized
+
+    @categorized.setter
+    def categorized(self, value):
+        self.__categorized = value

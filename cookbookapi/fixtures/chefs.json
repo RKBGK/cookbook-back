@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "bio": "Me",
+            "bio": "user1",
             "image_url": "https:abcnews.com",
             "created_on": "2022-06-01",
             "active": "1"
@@ -15,10 +15,32 @@
         "pk": 2,
         "fields": {
             "user": 2,
-            "bio": "Me",
-            "image_url": "https:abcnews.com",
+            "bio": "User2",
+            "image_url": "https:bbcnews.com",
             "created_on": "2022-06-09",
             "active": "0"
+        }
+    },
+    {
+        "model": "cookbookapi.chef",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "bio": "User3",
+            "image_url": "https:chef.com",
+            "created_on": "2022-06-09",
+            "active": "1"
+        }
+    },
+    {
+        "model": "cookbookapi.chef",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "bio": "User4",
+            "image_url": "https:recipe.com",
+            "created_on": "2022-06-09",
+            "active": "1"
         }
     }
 ]
