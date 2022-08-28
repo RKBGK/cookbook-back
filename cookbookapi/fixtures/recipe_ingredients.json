@@ -3,7 +3,7 @@
         "model": "cookbookapi.recipeingredient",
         "pk": 1,
         "fields": {            
-            "ingredient": 1,
+            "ingredient": "Flour",
             "recipe": 1,
             "quantity": 1,
             "measure": 1
@@ -13,12 +13,51 @@
         "model": "cookbookapi.recipeingredient",
         "pk": 2,
         "fields": {            
-            "ingredient": 2,
+            "ingredient": "Salt",
+            "recipe": 1,
+            "quantity": 2,
+            "measure": 2
+        }
+    },
+    {
+        "model": "cookbookapi.recipeingredient",
+        "pk": 2,
+        "fields": {            
+            "ingredient": "Water",
+            "recipe": 1,
+            "quantity": 2,
+            "measure": 2
+        }
+    },
+    {
+        "model": "cookbookapi.recipeingredient",
+        "pk": 2,
+        "fields": {            
+            "ingredient": "Sugar",
+            "recipe": 1,
+            "quantity": 2,
+            "measure": 2
+        }
+    },
+    {
+        "model": "cookbookapi.recipeingredient",
+        "pk": 2,
+        "fields": {            
+            "ingredient": "Black Pepper",
+            "recipe": 1,
+            "quantity": 2,
+            "measure": 2
+        }
+    },
+    {
+        "model": "cookbookapi.recipeingredient",
+        "pk": 2,
+        "fields": {            
+            "ingredient": "Butter",
             "recipe": 1,
             "quantity": 2,
             "measure": 2
         }
     }
+
 ]
-
-

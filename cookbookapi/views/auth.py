@@ -23,8 +23,10 @@ def login_user(request):
     
     if authenticated_user is not None:
         token = Token.objects.get(user=authenticated_user)
+
         data = {
             'valid': True,
+            'user': token.user_id,
             'token': token.key
         }
         print('*' * 100)
@@ -64,10 +66,11 @@ def register_user(request):
     )
     
     token = Token.objects.create(user=chef.user)
-    
+
     data = { 
             'token': token.key,
-             'valid': True
+            'user': token.user_id,
+            'valid': True
             }
     return Response(data)
     

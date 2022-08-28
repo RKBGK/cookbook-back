@@ -10,7 +10,7 @@
             "description": "Suggested toppings group Spinach and pineapple",
             "video_url": "www.cnn.com",
             "recipe": "bake",
-            "cooktime": 20,
+            "cookingtime": 20,
             "category": [1,2],
             "favorite": [
                  1,1
@@ -28,7 +28,27 @@
             "description": "Suggested toppings group Spinach and pineapple",
             "video_url": "www.cnn.com",
             "recipe": "boil",
-            "cooktime": 20,
+            "cookingtime": 20,
+            "category": [1,2],
+            "favorite": [
+                2,2 
+                ]
+
+            
+        }
+    },
+    {
+        "model": "cookbookapi.recipe",
+        "pk": 3,
+        "fields": {
+            "chef":1,
+            "title": "Ice Cream",
+            "publication_date":"2022-07-01",
+            "image_url": "www.abcnews.com",
+            "description": "Toppings with nuts, caramel",
+            "video_url": "www.abcnews.com",
+            "recipe": "boil milk, add sugar and flavors",
+            "cookingtime": 60,
             "category": [1,2],
             "favorite": [
                 2,2 
