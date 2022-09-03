@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from cookbookapi.views import register_user, login_user, CategoryView, RecipeView
+from cookbookapi.views import register_user, login_user, CategoryView, RecipeView, ChefView
 
 router = routers.DefaultRouter(trailing_slash=False)
 
 router.register(r'categories', CategoryView, 'categories')
 router.register(r'recipes', RecipeView, 'recipes')
+router.register(r'chefs', ChefView, 'chefs')
+
 
 urlpatterns = [
     path('register', register_user),

@@ -3,7 +3,7 @@ from cookbookapi.models.recipe import Recipe
 from cookbookapi.models.measure import Measure
 
 
-class RecipeIngredient(models.Model):
+class RecipeIngredients(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.CharField(max_length=50)    
     measure = models.ForeignKey(Measure, on_delete=models.CASCADE)
