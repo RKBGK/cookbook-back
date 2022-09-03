@@ -13,7 +13,9 @@ class RecipeView(ViewSet):
     # @permission_classes([AllowAny])
     def retrieve(self, request, pk):
         recipes = Recipe.objects.get(pk=pk)
-        ingredients= RecipeIngredients.objects.get_or_create(recipe=pk)
+        ingredients= RecipeIngredients.objects.filter(recipe_id=pk)
+        print('Recipe',recipes) 
+        print('ingredients=',ingredients)         
         serializer = RecipeSerializer(recipes)
         return Response(serializer.data)
         
@@ -22,6 +24,7 @@ class RecipeView(ViewSet):
         recipes = Recipe.objects.all()            
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data)
+  
 
     def update(self, request, pk):
         recipe = Recipe.objects.get(pk=pk) 
@@ -63,3 +66,9 @@ class  CreateRecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe')
 
+class  RecipeIngredientSerializer(serializers.ModelSerializer):
+    """JSON serializer for game types
+    """
+    class Meta:
+        model = Recipe
+        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe', 'ingredient','quantity')
