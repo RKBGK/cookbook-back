@@ -22,3 +22,7 @@ class Recipe(models.Model):
     @categorized.setter
     def categorized(self, value):
         self.__categorized = value
+        
+    def __str__(self):
+        return self.title
+        

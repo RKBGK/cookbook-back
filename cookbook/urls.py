@@ -16,13 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from cookbookapi.models.subscription import Subscription
+from cookbookapi.views.subscriptions import SubscriptionView
 from rest_framework import routers
-from cookbookapi.views import register_user, login_user, CategoryView, RecipeView
+from cookbookapi.views import register_user, login_user, CategoryView, RecipeView, ChefView, IngredientView
 
 router = routers.DefaultRouter(trailing_slash=False)
 
 router.register(r'categories', CategoryView, 'categories')
 router.register(r'recipes', RecipeView, 'recipes')
+router.register(r'chefs', ChefView, 'chefs')
+router.register(r'ingredientview', IngredientView,'ingredientview')
+router.register(r'subscriptions', SubscriptionView,'subscriptions')
 
 urlpatterns = [
     path('register', register_user),
