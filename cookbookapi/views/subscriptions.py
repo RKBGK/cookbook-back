@@ -6,7 +6,6 @@ from rest_framework.decorators import action
 from datetime import datetime
 from cookbookapi.models.subscription import  Subscription
 
-from rarerestapi.models.subscription import Subscription
 
 # from rest_framework.decorators import  permission_classes
 # from rest_framework.permissions import AllowAny
@@ -29,4 +28,4 @@ class SubscriptionSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Subscription
-        fields = ('id', 'chef', 'user','created_on', 'deleted_on')
+        fields = ('id', 'chef', 'follower','created_on', 'deleted_on')

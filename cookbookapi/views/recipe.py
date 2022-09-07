@@ -1,3 +1,4 @@
+from cookbookapi.models.measure import Measure
 from cookbookapi.models.recipe_ingredients import RecipeIngredients
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -13,16 +14,16 @@ class RecipeView(ViewSet):
     # @permission_classes([AllowAny])
     def retrieve(self, request, pk):
         recipes = Recipe.objects.get(pk=pk)
-        ingredients= RecipeIngredients.objects.filter(recipe_id=pk)
-        print('Recipe',recipes) 
-        print('ingredients=',ingredients)         
+        
         serializer = RecipeSerializer(recipes)
+        print(serializer.data)    
         return Response(serializer.data)
         
     # @permission_classes([AllowAny])
     def list(self, request):
         recipes = Recipe.objects.all()            
         serializer = RecipeSerializer(recipes, many=True)
+        # print(serializer.data)
         return Response(serializer.data)
   
 
@@ -47,28 +48,46 @@ class RecipeView(ViewSet):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
-class RecipeSerializer(serializers.ModelSerializer):
-    """JSON serializer for game types
-    """
-    # first_name = serializers.CharField(source = 'chef.user.first_name')
-    # last_name = serializers.CharField(source = 'chef.user.last_name')
 
-    class Meta:
-        model = Recipe
-        
-        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe','cookingtime','category', 'favorite','categorized')
-        # depth = 2
-        
+class IngredientView(ViewSet):
+    """Level up game types view"""
+    
+    # @permission_classes([AllowAny])
+    def retrieve(self, request, pk):
+        ingredients = RecipeIngredients.objects.get(pk=pk)
+        serializer = IngredientSerializer(ingredients)
+        print(serializer.data)    
+        return Response(serializer.data)
+           
 class  CreateRecipeSerializer(serializers.ModelSerializer):
-    """JSON serializer for game types
-    """
+    
     class Meta:
         model = Recipe
         fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe')
+        
 
-class  RecipeIngredientSerializer(serializers.ModelSerializer):
-    """JSON serializer for game types
-    """
+
+class  MeasureSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Measure
+        fields = ('unit')
+        
+class  IngredientSerializer(serializers.ModelSerializer):
+    # measureunit= MeasureSerializer(many=True, read_only=True)
+    unit= serializers.CharField(source = 'measure.unit')
+    class Meta:
+        model = RecipeIngredients
+        fields = ('ingredient','quantity','unit')
+        depth = 1
+        
+class RecipeSerializer(serializers.ModelSerializer):
+    element = IngredientSerializer(many=True, read_only=True)
+
     class Meta:
         model = Recipe
-        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe', 'ingredient','quantity')
+        
+        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe',
+                  'cookingtime','category', 'favorite','categorized','element')
+    
+
