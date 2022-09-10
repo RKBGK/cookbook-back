@@ -9,3 +9,10 @@ class Subscription(models.Model):
     created_on = models.DateField()
     deleted_on = models.DateField()
   
+    @property
+    def subscribed(self):
+        return self.__subscribed
+
+    @subscribed.setter
+    def subscribed(self, value):
+        self.__subscribed = value
