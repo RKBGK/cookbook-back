@@ -1,3 +1,4 @@
+from cookbookapi.models.chef import Chef
 from cookbookapi.models.measure import Measure
 from cookbookapi.models.recipe_ingredients import RecipeIngredients
 from rest_framework.viewsets import ViewSet
@@ -41,11 +42,19 @@ class RecipeView(ViewSet):
         return Response(None, status=status.HTTP_204_NO_CONTENT)    
     
     def create(self, request):
-
         print(request.data)
-        serializer = RecipeSerializer(data=request.data)
+        print(request.auth.user)
+        chef = Chef.objects.get(user=request.auth.user)
+        serializer = CreateRecipeSerializer(data=request.data)
+        print("*" * 100)
+        print(CreateRecipeSerializer(data=request.data))        
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(chef=chef)
+        recipeid = serializer.data['id']
+        recipe= Recipe.objects.get(pk=recipeid )
+        categories =  request.data['categories']
+        # *tags is spread in python
+        recipe.categories.add(*categories)
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
 
@@ -63,7 +72,7 @@ class  CreateRecipeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Recipe
-        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe')
+        fields = ('id','title','publication_date','image_url', 'description','video_url','directions','cookingtime')
         
 
 
@@ -76,6 +85,7 @@ class  MeasureSerializer(serializers.ModelSerializer):
 class  IngredientSerializer(serializers.ModelSerializer):
     # measureunit= MeasureSerializer(many=True, read_only=True)
     unit= serializers.CharField(source = 'measure.unit')
+    ingredient= serializers.CharField(source = 'ingredient.label')
     class Meta:
         model = RecipeIngredients
         fields = ('ingredient','quantity','unit')
@@ -83,11 +93,12 @@ class  IngredientSerializer(serializers.ModelSerializer):
         
 class RecipeSerializer(serializers.ModelSerializer):
     element = IngredientSerializer(many=True, read_only=True)
+    # categorylabel= serializers.CharField(source = 'category.label')
 
     class Meta:
         model = Recipe
         
-        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe',
-                  'cookingtime','category', 'favorite','categorized','element')
-    
+        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','directions',
+                  'cookingtime','categories', 'favorite','categorized','element')
+        depth = 2
 

@@ -5,3 +5,4 @@ from .measure import Measure
 from .recipe_ingredients import RecipeIngredients
 from .recipe import Recipe
 from .subscription import Subscription
+from .ingredients import Ingredient

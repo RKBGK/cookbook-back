@@ -29,3 +29,10 @@ class SubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subscription
         fields = ('id', 'chef', 'follower','created_on', 'deleted_on')
+
+class CreateSubscriptionSerializer(serializers.ModelSerializer):
+    # created_on = datetime.today().strftime('%Y-%m-%d')
+    # deleted_on = datetime.today().strftime('%Y-%m-%d')
+    class Meta:
+        model = Subscription
+        fields = ['chef', 'follower','created_on', 'deleted_on']  
