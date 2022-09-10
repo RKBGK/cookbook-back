@@ -44,7 +44,7 @@ class RecipeView(ViewSet):
     def create(self, request):
         print(request.data)
         print(request.auth.user)
-        chef = Chef.objects.get(chef=request.auth.user)
+        chef = Chef.objects.get(user=request.auth.user)
         serializer = CreateRecipeSerializer(data=request.data)
         print("*" * 100)
         print(CreateRecipeSerializer(data=request.data))        
@@ -52,9 +52,9 @@ class RecipeView(ViewSet):
         serializer.save(chef=chef)
         recipeid = serializer.data['id']
         recipe= Recipe.objects.get(pk=recipeid )
-        categories =  request.data['categories']
+        categories =  request.data['category']
         # *tags is spread in python
-        recipe.categories.add(*categories)
+        recipe.category.add(*categories)
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
 
@@ -72,7 +72,7 @@ class  CreateRecipeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Recipe
-        fields = ('id','title','publication_date','image_url', 'description','video_url','recipe')
+        fields = ('id','title','publication_date','image_url', 'description','video_url','recipe','cookingtime')
         
 
 
