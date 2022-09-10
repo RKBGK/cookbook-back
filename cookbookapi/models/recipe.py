@@ -10,9 +10,9 @@ class Recipe(models.Model):
     image_url = models.URLField(max_length=500, default=None)
     description = models.CharField(max_length=50)
     video_url = models.URLField(max_length=500, default=None)
-    recipe = models.CharField(max_length=500, default=None)
+    directions = models.CharField(max_length=500, default=None)
     cookingtime = models.IntegerField()
-    category = models.ManyToManyField(Category, related_name="recipetype") 
+    categories = models.ManyToManyField(Category, related_name="recipetype") 
     favorite = models.ManyToManyField(Chef, related_name="userfav") 
     
     @property

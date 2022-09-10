@@ -43,8 +43,8 @@
         "model": "cookbookapi.subscription",
         "pk": 5,
         "fields": {            
-            "chef": 2,
-            "follower": 5,
+            "chef": 4,
+            "follower": 2,
             "created_on": "2022-06-12",
             "deleted_on": "2022-06-19"
         }
@@ -53,8 +53,8 @@
         "model": "cookbookapi.subscription",
         "pk": 6,
         "fields": {            
-            "chef": 5,
-            "follower": 1,
+            "chef": 3,
+            "follower": 2,
             "created_on": "2022-06-12",
             "deleted_on": "2022-06-19"
         }

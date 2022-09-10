@@ -52,9 +52,9 @@ class RecipeView(ViewSet):
         serializer.save(chef=chef)
         recipeid = serializer.data['id']
         recipe= Recipe.objects.get(pk=recipeid )
-        categories =  request.data['category']
+        categories =  request.data['categories']
         # *tags is spread in python
-        recipe.category.add(*categories)
+        recipe.categories.add(*categories)
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
 
@@ -72,7 +72,7 @@ class  CreateRecipeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Recipe
-        fields = ('id','title','publication_date','image_url', 'description','video_url','recipe','cookingtime')
+        fields = ('id','title','publication_date','image_url', 'description','video_url','directions','cookingtime')
         
 
 
@@ -85,6 +85,7 @@ class  MeasureSerializer(serializers.ModelSerializer):
 class  IngredientSerializer(serializers.ModelSerializer):
     # measureunit= MeasureSerializer(many=True, read_only=True)
     unit= serializers.CharField(source = 'measure.unit')
+    ingredient= serializers.CharField(source = 'ingredient.label')
     class Meta:
         model = RecipeIngredients
         fields = ('ingredient','quantity','unit')
@@ -97,7 +98,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         
-        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','recipe',
-                  'cookingtime','category', 'favorite','categorized','element')
+        fields = ('id','chef','title','publication_date','image_url', 'description','video_url','directions',
+                  'cookingtime','categories', 'favorite','categorized','element')
         depth = 2
 
