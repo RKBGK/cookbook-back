@@ -26,7 +26,7 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'categories', CategoryView, 'categories')
 router.register(r'recipes', RecipeView, 'recipes')
 router.register(r'chefs', ChefView, 'chefs')
-router.register(r'ingredientview', IngredientView,'ingredientview')
+router.register(r'ingredients', IngredientView,'ingredients')
 router.register(r'subscriptions', SubscriptionView,'subscriptions')
 
 urlpatterns = [
