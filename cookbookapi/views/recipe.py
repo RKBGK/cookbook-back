@@ -53,8 +53,10 @@ class RecipeView(ViewSet):
         recipeid = serializer.data['id']
         recipe= Recipe.objects.get(pk=recipeid )
         categories =  request.data['categories']
+        recipeingredients =  request.data['element']
         # *tags is spread in python
         recipe.categories.add(*categories)
+        recipe.element.add(*recipeingredients)
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
 
