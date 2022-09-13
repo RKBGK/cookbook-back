@@ -19,7 +19,9 @@ from django.conf.urls import include
 from cookbookapi.models.subscription import Subscription
 from cookbookapi.views.subscriptions import SubscriptionView
 from rest_framework import routers
-from cookbookapi.views import register_user, login_user, CategoryView, RecipeView, ChefView, IngredientView
+from cookbookapi.views import register_user, login_user, CategoryView, RecipeView, ChefView, IngredientView, MeasureView
+
+
 
 router = routers.DefaultRouter(trailing_slash=False)
 
@@ -28,6 +30,7 @@ router.register(r'recipes', RecipeView, 'recipes')
 router.register(r'chefs', ChefView, 'chefs')
 router.register(r'ingredients', IngredientView,'ingredients')
 router.register(r'subscriptions', SubscriptionView,'subscriptions')
+router.register(r'measures', MeasureView,'measures')
 
 urlpatterns = [
     path('register', register_user),

@@ -4,3 +4,4 @@ from .recipe import RecipeView
 from .chef import ChefView 
 from .subscriptions import  SubscriptionView
 from .ingredients import IngredientView
+from .measures import MeasureView

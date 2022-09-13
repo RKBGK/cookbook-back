@@ -23,6 +23,7 @@ class IngredientView(ViewSet):
     def list(self, request):
         ingredients = Ingredient.objects.all()            
         serializer = IngredientSerializer(ingredients, many=True)
+        print(serializer )
         return Response(serializer.data)
 
     def update(self, request, pk):
