@@ -1,13 +1,13 @@
+from unicodedata import numeric
 from cookbookapi.models.chef import Chef
-from cookbookapi.models.measure import Measure
 from cookbookapi.models.recipe_ingredients import RecipeIngredients
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from django.core.exceptions import ValidationError
 from cookbookapi.models.recipe import Recipe
-# from rest_framework.decorators import  permission_classes
-# from rest_framework.permissions import AllowAny
+from cookbookapi.models.measure import Measure
+from cookbookapi.models.ingredients import Ingredient
 
 class RecipeView(ViewSet):
     """Level up game types view"""
@@ -34,6 +34,8 @@ class RecipeView(ViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         recipe.save()
+        newcategories =  request.data['categories']
+        recipe.categories.set(newcategories)
         return Response(None, status=status.HTTP_204_NO_CONTENT)
     
     def destroy(self, request, pk):
@@ -42,21 +44,31 @@ class RecipeView(ViewSet):
         return Response(None, status=status.HTTP_204_NO_CONTENT)    
     
     def create(self, request):
-        print(request.data)
-        print(request.auth.user)
+        # print(request.data)
+        # print(request.auth.user)
         chef = Chef.objects.get(user=request.auth.user)
         serializer = CreateRecipeSerializer(data=request.data)
-        print("*" * 100)
-        print(CreateRecipeSerializer(data=request.data))        
+        # print("*" * 100)
+        # print(CreateRecipeSerializer(data=request.data))        
         serializer.is_valid(raise_exception=True)
         serializer.save(chef=chef)
+        
         recipeid = serializer.data['id']
         recipe= Recipe.objects.get(pk=recipeid )
         categories =  request.data['categories']
-        recipeingredients =  request.data['element']
-        # *tags is spread in python
         recipe.categories.add(*categories)
-        recipe.element.add(*recipeingredients)
+        
+        elements =  request.data['element']
+        for element in elements:
+            measure=Measure.objects.get(pk=int(element['measure']))
+            ingredient=Ingredient.objects.get(pk=int(element['ingredient']))     
+            quantity= float(element['quantity'])   
+            
+            recipeIngredient = RecipeIngredients(recipe=recipe, ingredient=ingredient, measure=measure,quantity=quantity)
+            recipeIngredient.save()
+                             
+        
+    
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
 
@@ -76,7 +88,13 @@ class  CreateRecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ('id','title','publication_date','image_url', 'description','video_url','directions','cookingtime')
         
-
+class  CreateRecipeIngredientSerializer(serializers.ModelSerializer):
+    # measureunit= MeasureSerializer(many=True, read_only=True)
+    unit= serializers.CharField(source = 'measure.unit')
+    ingredient= serializers.CharField(source = 'ingredient.label')
+    class Meta:
+        model = RecipeIngredients
+        fields = ('recipe','ingredient','quantity','unit')
 
 class  MeasureSerializer(serializers.ModelSerializer):
 
