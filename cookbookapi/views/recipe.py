@@ -36,6 +36,17 @@ class RecipeView(ViewSet):
         recipe.save()
         newcategories =  request.data['categories']
         recipe.categories.set(newcategories)
+        elements =  request.data['element']
+        print('elements ',elements )
+        
+        for element in elements:
+            measure=Measure.objects.get(unit=(element['unit']))
+            ingredient=Ingredient.objects.get(label=element['ingredient'])  
+            quantity= float(element['quantity'])   
+            
+            recipeIngredient = RecipeIngredients(recipe=recipe, ingredient=ingredient, measure=measure,quantity=quantity)
+            recipeIngredient.save()
+                             
         return Response(None, status=status.HTTP_204_NO_CONTENT)
     
     def destroy(self, request, pk):
@@ -60,8 +71,8 @@ class RecipeView(ViewSet):
         
         elements =  request.data['element']
         for element in elements:
-            measure=Measure.objects.get(pk=int(element['measure']))
-            ingredient=Ingredient.objects.get(pk=int(element['ingredient']))     
+            measure=Measure.objects.get(unit=(element['measure']))
+            ingredient=Ingredient.objects.get(label=element['ingredient'])
             quantity= float(element['quantity'])   
             
             recipeIngredient = RecipeIngredients(recipe=recipe, ingredient=ingredient, measure=measure,quantity=quantity)
@@ -91,6 +102,7 @@ class  CreateRecipeSerializer(serializers.ModelSerializer):
 class  CreateRecipeIngredientSerializer(serializers.ModelSerializer):
     # measureunit= MeasureSerializer(many=True, read_only=True)
     unit= serializers.CharField(source = 'measure.unit')
+    
     ingredient= serializers.CharField(source = 'ingredient.label')
     class Meta:
         model = RecipeIngredients
