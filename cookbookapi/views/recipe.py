@@ -37,15 +37,29 @@ class RecipeView(ViewSet):
         newcategories =  request.data['categories']
         recipe.categories.set(newcategories)
         elements =  request.data['element']
-        print('elements ',elements )
-        
+        ri= RecipeIngredients.objects.filter(recipe=pk)
+        ri.delete()
         for element in elements:
-            measure=Measure.objects.get(unit=(element['unit']))
-            ingredient=Ingredient.objects.get(label=element['ingredient'])  
+            print('element',element,element.keys(), type(element['ingredient']))
+            if type(element['ingredient']) ==type(1):
+                ingredient=Ingredient.objects.get(pk=element['ingredient'])
+            else:
+                ingredient=Ingredient.objects.get(pk=element['ingredient']['id'])
+                
+            print('ingredient',ingredient)
+            if type(element['measure']) ==type(1):
+                measure=Measure.objects.get(pk=element['measure'])
+            else:
+                measure = Measure.objects.get(pk=element['measure']['id'])
+                
+            print('measure',measure)
+            # measure=Measure.objects.get(pk=int(element['measure']))
+            # ingredient=Ingredient.objects.get(pk=int(element['ingredient']))     
             quantity= float(element['quantity'])   
             
             recipeIngredient = RecipeIngredients(recipe=recipe, ingredient=ingredient, measure=measure,quantity=quantity)
             recipeIngredient.save()
+                             
                              
         return Response(None, status=status.HTTP_204_NO_CONTENT)
     
