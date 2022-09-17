@@ -36,6 +36,17 @@ class RecipeView(ViewSet):
         recipe.save()
         newcategories =  request.data['categories']
         recipe.categories.set(newcategories)
+        elements =  request.data['element']
+        print('elements ',elements )
+        
+        for element in elements:
+            measure=Measure.objects.get(unit=(element['unit']))
+            ingredient=Ingredient.objects.get(label=element['ingredient'])  
+            quantity= float(element['quantity'])   
+            
+            recipeIngredient = RecipeIngredients(recipe=recipe, ingredient=ingredient, measure=measure,quantity=quantity)
+            recipeIngredient.save()
+                             
         return Response(None, status=status.HTTP_204_NO_CONTENT)
     
     def destroy(self, request, pk):
@@ -72,15 +83,15 @@ class RecipeView(ViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)  
 
 
-class IngredientView(ViewSet):
-    """Level up game types view"""
+# class IngredientView(ViewSet):
+#     """Level up game types view"""
     
-    # @permission_classes([AllowAny])
-    def retrieve(self, request, pk):
-        ingredients = RecipeIngredients.objects.get(pk=pk)
-        serializer = IngredientSerializer(ingredients)
-        print(serializer.data)    
-        return Response(serializer.data)
+#     # @permission_classes([AllowAny])
+#     def retrieve(self, request, pk):
+#         ingredients = RecipeIngredients.objects.get(pk=pk)
+#         serializer = RecipeIngredientSerializer(ingredients)
+#         print(serializer.data)    
+#         return Response(serializer.data)
            
 class  CreateRecipeSerializer(serializers.ModelSerializer):
     
@@ -91,6 +102,7 @@ class  CreateRecipeSerializer(serializers.ModelSerializer):
 class  CreateRecipeIngredientSerializer(serializers.ModelSerializer):
     # measureunit= MeasureSerializer(many=True, read_only=True)
     unit= serializers.CharField(source = 'measure.unit')
+    
     ingredient= serializers.CharField(source = 'ingredient.label')
     class Meta:
         model = RecipeIngredients
@@ -102,17 +114,17 @@ class  MeasureSerializer(serializers.ModelSerializer):
         model = Measure
         fields = ('unit')
         
-class  IngredientSerializer(serializers.ModelSerializer):
+class  RecipeIngredientSerializer(serializers.ModelSerializer):
     # measureunit= MeasureSerializer(many=True, read_only=True)
-    unit= serializers.CharField(source = 'measure.unit')
-    ingredient= serializers.CharField(source = 'ingredient.label')
+    # unit= serializers.CharField(source = 'measure.unit')
+    # ingredient= serializers.CharField(source = 'ingredient.label')
     class Meta:
         model = RecipeIngredients
-        fields = ('ingredient','quantity','unit')
+        fields = ('ingredient','quantity','measure')
         depth = 1
         
 class RecipeSerializer(serializers.ModelSerializer):
-    element = IngredientSerializer(many=True, read_only=True)
+    element = RecipeIngredientSerializer(many=True, read_only=True)
     # categorylabel= serializers.CharField(source = 'category.label')
 
     class Meta:
@@ -121,4 +133,3 @@ class RecipeSerializer(serializers.ModelSerializer):
         fields = ('id','chef','title','publication_date','image_url', 'description','video_url','directions',
                   'cookingtime','categories', 'favorite','categorized','element')
         depth = 2
-
